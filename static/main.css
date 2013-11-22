@@ -1,0 +1,250 @@
+body {
+    background-color: rgb(27,27,27);
+}
+
+@font-face {
+	font-family: MonaLisa;
+	src: url('mona_lisa.ttf');
+}
+
+#content {
+    width: 1000px;
+    margin: 0px auto;
+}
+
+#header {
+    border: 2px solid #818181;
+    background-color: white;
+    border-radius: 5px;
+}
+
+#header > img {
+    width: 994px;
+    border: 1px solid #818181;
+}
+
+.tab {
+    background-color: white;
+    font-family: MonaLisa;
+    font-size: 30px;
+    display: inline-block;
+    padding: 0px 15px;
+    height: 42px;
+    line-height: 42px;
+    color: black;
+    border-left: 2px solid #818181;
+    text-align: center;
+}
+
+.tab.home {
+    border-left: none;
+    border-bottom-left-radius: 5px;
+}
+
+.tab.contact {
+    padding: 0px 23px;
+    border-bottom-right-radius: 5px;
+}
+
+.tab.home.selected, .tab.contact.selected {
+    background-color: rgb(104,158,184);
+}
+
+.tab.portraits.selected {
+    background-color: rgb(254,141,56);
+}
+
+.tab.travel.selected {
+    background-color: rgb(253,252,155);
+}
+
+.tab.nature.selected {
+    background-color: rgb(199,0,18);
+}
+
+.tab.happenstances.selected {
+    background-color: rgb(86,170,92);
+}
+
+.tab.food.selected {
+    background-color: rgb(231,61,111);
+}
+
+.tab:hover {
+    background-color: black;
+    color: white;
+}
+
+.info-box {
+    background-color: rgb(104,158,184);
+    font-family: MonaLisa;
+    border: 3px solid white;
+    padding: 21px;
+    text-align: center;
+}
+
+.home.info-box {
+    width: 500px;
+    font-size: 25px;
+    margin: auto;
+    border-radius: 10px;
+    height: 39px;
+    line-height: 39px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+.contact.info-box {
+    margin: 50px auto;
+    width: 865px;
+    font-size: 29px;
+    text-align: center;
+    padding: 21px;
+}
+
+.info-box a {
+    color: white;
+    text-decoration: none;
+}
+
+.sample-container {
+    position: relative;
+    margin: 20px auto;
+    height: 200px;
+}
+
+.sample {
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    display: none;
+}
+
+.ruler {
+    height: 2px;
+    width: 75%;
+    display: block;
+    margin: 0px auto;
+    background-color: #DDD;
+}
+
+#author {
+    font-family: MonaLisa;
+    font-size: 21px;
+    text-align: center;
+    margin: 25px auto;
+    color: #AAA;
+}
+
+#footer {
+    font-family: MonaLisa;
+    font-size: 24px;
+    color: rgb(221,221,221);
+    margin: 10px auto;
+    text-align: center;
+}
+
+#footer a {
+    color: rgb(104,158,184);
+    text-decoration: none;
+}
+
+.error {
+    text-align: center;
+    color: red;
+    font-size: 20px;
+}
+
+#gallery {
+    margin: 20px auto;
+    width: 100%;
+    height: 480px;
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.column {
+    display: inline-block;
+    width: 180px;
+    height: 100%;
+    vertical-align: top;
+}
+
+.viewport {
+    display: inline-block;
+    width: 640px;
+    height: 100%;
+    text-align: center;
+}
+
+.viewport:before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin-right: -0.25em;
+  font-size: 0;
+ }
+
+.viewport img {
+    display: inline-block;
+    max-width: 95%;
+    max-height: 95%;
+    vertical-align: middle;
+}
+
+.cell {
+    width: 80px;
+    height: 70px;
+    padding: 4px;
+    display: inline-block;
+    border-bottom: 1px solid gray;
+    text-align: center;
+}
+
+.cell:before {
+  content: '';
+  display: inline-block;
+  height: 100%; 
+  vertical-align: middle;
+  margin-right: -0.25em;
+  font-size: 0;
+ }
+
+.cell img {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+    vertical-align: middle
+}
+
+.left .cell {
+    border-right: 1px solid gray;
+}
+
+.right .cell {
+    border-left: 1px solid gray;
+}
+
+.pagination {
+    text-align: center;
+    
+}
+
+.paginator {
+    color: white;
+    font-family: MonaLisa;
+    font-size: 24px;
+    display: inline-block;
+    margin: 0px 5px 20px 5px;
+}
+
+.paginator.disabled {
+    color: gray;
+}
