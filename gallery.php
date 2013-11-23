@@ -31,29 +31,7 @@
 		}
 		$leftColumn .= "</div>";
 		$rightColumn .= "</div>";
-		$viewport = <<<HTML
-<div class='viewport'>
-	<div id="floatingCirclesG">
-	<div class="f_circleG" id="frotateG_01">
-	</div>
-	<div class="f_circleG" id="frotateG_02">
-	</div>
-	<div class="f_circleG" id="frotateG_03">
-	</div>
-	<div class="f_circleG" id="frotateG_04">
-	</div>
-	<div class="f_circleG" id="frotateG_05">
-	</div>
-	<div class="f_circleG" id="frotateG_06">
-	</div>
-	<div class="f_circleG" id="frotateG_07">
-	</div>
-	<div class="f_circleG" id="frotateG_08">
-	</div>
-	</div>
-	<img src='static/images/originals/$category/$firstIndex.jpg' />
-</div>
-HTML;
+		$viewport = "<div class='viewport'><img src='static/images/originals/$category/$firstIndex.jpg' /></div>";
 		$galleryHtml .= $leftColumn . $viewport . $rightColumn . "</div>";
 		
 		$pagination = "";
@@ -107,15 +85,24 @@ HTML;
 		
 		<script type='text/javascript'>
 			(function() {
+				
+				var spinner = $("<div></div>").attr("id", "floatingCirclesG");
+				for (var i = 1; i < 9; i++) {
+					spinner.append($("<div></div>").attr("id", "frotateG_0" + i).addClass("f_circleG"));
+				} 
+				
 				$(".cell img").on("click", function(e) {
 					var filename = e.target.src.replace(/^.*[\\\/]/, '');
+					var thumbnail = $(e.target);
 					var image = $(".viewport img");
-					image.hide();
+					
+					thumbnail.parent().append(spinner);
+					thumbnail.hide();
 					image.on("load", function() {
-						image.show();
+						spinner.remove();
+						thumbnail.show();
 					});
 					image.attr("src", "static/images/originals/<?= $selectedTabName ?>/" + filename);
-					
 				});
 			})();
 		</script>

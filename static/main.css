@@ -208,6 +208,7 @@ body {
     display: inline-block;
     border-bottom: 1px solid gray;
     text-align: center;
+    position: relative;
 }
 
 .cell:before {
