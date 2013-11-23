@@ -181,6 +181,7 @@ body {
     width: 640px;
     height: 100%;
     text-align: center;
+    position: relative;
 }
 
 .viewport:before {
@@ -197,6 +198,7 @@ body {
     max-width: 95%;
     max-height: 95%;
     vertical-align: middle;
+    position: relative;
 }
 
 .cell {

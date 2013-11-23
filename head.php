@@ -4,4 +4,5 @@
 	<link rel="icon" href="static/images/favicon.png" type="image/png" />
 	<link rel="stylesheet" type="text/css" href="static/main.css" />
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/spinner.css" />
 </head>

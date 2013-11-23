@@ -31,7 +31,29 @@
 		}
 		$leftColumn .= "</div>";
 		$rightColumn .= "</div>";
-		$viewport = "<div class='viewport'><img src='static/images/originals/$category/$firstIndex.jpg' /></div>";
+		$viewport = <<<HTML
+<div class='viewport'>
+	<div id="floatingCirclesG">
+	<div class="f_circleG" id="frotateG_01">
+	</div>
+	<div class="f_circleG" id="frotateG_02">
+	</div>
+	<div class="f_circleG" id="frotateG_03">
+	</div>
+	<div class="f_circleG" id="frotateG_04">
+	</div>
+	<div class="f_circleG" id="frotateG_05">
+	</div>
+	<div class="f_circleG" id="frotateG_06">
+	</div>
+	<div class="f_circleG" id="frotateG_07">
+	</div>
+	<div class="f_circleG" id="frotateG_08">
+	</div>
+	</div>
+	<img src='static/images/originals/$category/$firstIndex.jpg' />
+</div>
+HTML;
 		$galleryHtml .= $leftColumn . $viewport . $rightColumn . "</div>";
 		
 		$pagination = "";
@@ -86,8 +108,14 @@
 		<script type='text/javascript'>
 			(function() {
 				$(".cell img").on("click", function(e) {
-					var filename = e.target.src.replace(/^.*[\\\/]/, '')
-					$(".viewport img").attr("src", "static/images/originals/<?= $selectedTabName ?>/" + filename);
+					var filename = e.target.src.replace(/^.*[\\\/]/, '');
+					var image = $(".viewport img");
+					image.hide();
+					image.on("load", function() {
+						image.show();
+					});
+					image.attr("src", "static/images/originals/<?= $selectedTabName ?>/" + filename);
+					
 				});
 			})();
 		</script>
