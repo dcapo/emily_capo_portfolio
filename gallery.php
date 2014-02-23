@@ -86,23 +86,22 @@
 		<script type='text/javascript'>
 			(function() {
 				
-				var spinner = $("<div></div>").attr("id", "floatingCirclesG");
-				for (var i = 1; i < 9; i++) {
-					spinner.append($("<div></div>").attr("id", "frotateG_0" + i).addClass("f_circleG"));
-				} 
+				var spinner = $("<img />").attr("src", "static/images/spinner.gif");
 				
 				$(".cell img").on("click", function(e) {
-					var filename = e.target.src.replace(/^.*[\\\/]/, '');
 					var thumbnail = $(e.target);
+					var filename = thumbnail.attr('src').replace(/^.*[\\\/]/, '');
 					var image = $(".viewport img");
 					
-					thumbnail.parent().append(spinner);
-					thumbnail.hide();
-					image.on("load", function() {
-						spinner.remove();
-						thumbnail.show();
-					});
-					image.attr("src", "static/images/originals/<?= $selectedTabName ?>/" + filename);
+					if (image.attr("src").replace(/^.*[\\\/]/, '') !== filename) {
+						thumbnail.parent().append(spinner);
+						thumbnail.hide();
+						image.on("load", function() {
+							spinner.remove();
+							thumbnail.show();
+						});
+						image.attr("src", "static/images/originals/<?= $selectedTabName ?>/" + filename);
+					}
 				});
 			})();
 		</script>
