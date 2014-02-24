@@ -10,7 +10,7 @@
 			<?php include('header.php'); ?>
 		
 			<div class='contact info-box'>
-				Thank you for your interest in my photography! I hope you have enjoyed touring this site.
+				Thank you for your interest in my photography! <br /> I hope you have enjoyed touring this site.
 				If you have any questions or would like to buy prints, please feel free to contact me at
 				<a href='mailto:emilycapo@gmail.com'>emilycapo@gmail.com</a>.
 			</div>

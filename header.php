@@ -38,14 +38,12 @@
 	}
 	
 	$tabs = array(
-		'home' => new Tab('Home', 'index.php', 'home'),
-		'portraits' => new Tab('Portraits', 'gallery.php?category=portraits', 'portraits gallery'),
-		'travel' => new Tab('Travel', 'gallery.php?category=travel', 'travel gallery'),
-		'nature' => new Tab('Nature', 'gallery.php?category=nature', 'nature gallery'),
-		'happenstances' => new Tab('Happenstances', 'gallery.php?category=happenstances', 'happenstances gallery'),
-		'food' => new Tab('Food, Glorious Food', 'gallery.php?category=food', 'food gallery'),
-		'blog' => new Tab('Blog', 'http://ecapo.wordpress.com', 'blog'),
-		'contact' => new Tab('Contact', 'contact.php', 'contact')
+		'portraits' => new Tab('portraits', 'gallery.php?category=portraits', 'portraits gallery'),
+		'travel' => new Tab('travel', 'gallery.php?category=travel', 'travel gallery'),
+		'nature' => new Tab('nature', 'gallery.php?category=nature', 'nature gallery'),
+		'happenstances' => new Tab('happenstances', 'gallery.php?category=happenstances', 'happenstances gallery'),
+		'blog' => new Tab('blog', 'http://ecapo.wordpress.com', 'blog'),
+		'contact' => new Tab('contact', 'contact.php', 'contact')
 	);
 	
 	if (isset($tabs[$selectedTabName])) {
@@ -57,7 +55,7 @@
 ?>
 
 <div id="header">
-	<img src="<?= $banner ?>" border="1" />
+	<a style="display:block;" href="index.php"><img class="banner" src="<?= $banner ?>" border="1" /></a>
 	<div class="navigation">
 			<?php
 				foreach ($tabs as $tab) {

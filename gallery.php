@@ -53,7 +53,7 @@
 	}
 	
 	$imagesPerPage = 24;
-	$categories = array('portraits', 'travel', 'nature', 'happenstances', 'food');
+	$categories = array('portraits', 'travel', 'nature', 'happenstances');
 	if (isset($_GET['category']) && in_array($_GET['category'], $categories)) {
 		$selectedTabName = $_GET['category'];
 		$banner="static/images/banners/$selectedTabName.jpg";

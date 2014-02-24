@@ -17,7 +17,6 @@
 				<img class="travel sample" src="static/images/samples/travel.jpg" />
 				<img class="nature sample" src="static/images/samples/nature.jpg" />
 				<img class="happenstances sample" src="static/images/samples/happenstances.jpg" />
-				<img class="food sample" src="static/images/samples/food.jpg" />
 			</div>
 		
 			<?php include('footer.php'); ?>

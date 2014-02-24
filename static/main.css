@@ -2,11 +2,6 @@ body {
     background-color: rgb(27,27,27);
 }
 
-@font-face {
-	font-family: MonaLisa;
-	src: url('mona_lisa.ttf');
-}
-
 #content {
     width: 1000px;
     margin: 0px auto;
@@ -16,24 +11,28 @@ body {
     border: 2px solid #818181;
     background-color: white;
     border-radius: 5px;
+    position: relative;
 }
 
-#header > img {
+.banner {
     width: 994px;
     border: 1px solid #818181;
 }
 
 .tab {
-    background-color: white;
-    font-family: MonaLisa;
-    font-size: 30px;
+    background-color: ;
+    font-family: "Trebuchet MS", helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: lighter;
+    letter-spacing: -0.5;
     display: inline-block;
     padding: 0px 15px;
-    height: 42px;
-    line-height: 42px;
+    height: 30px;
+    line-height: 30px;
     color: black;
     border-left: 2px solid #818181;
     text-align: center;
+    width: 134px;
 }
 
 .tab.home {
@@ -42,7 +41,6 @@ body {
 }
 
 .tab.contact {
-    padding: 0px 23px;
     border-bottom-right-radius: 5px;
 }
 
@@ -77,15 +75,16 @@ body {
 
 .info-box {
     background-color: rgb(104,158,184);
-    font-family: MonaLisa;
+    font-family: "Trebuchet MS", helvetica, sans-serif;;
     border: 3px solid white;
+    border-radius: 4px;
     padding: 21px;
     text-align: center;
 }
 
 .home.info-box {
     width: 600px;
-    font-size: 25px;
+    font-size: 17px;
     margin: auto;
     border-radius: 10px;
     height: 39px;
@@ -100,7 +99,7 @@ body {
 .contact.info-box {
     margin: 50px auto;
     width: 865px;
-    font-size: 29px;
+    font-size: 17px;
     text-align: center;
     padding: 21px;
 }
@@ -127,24 +126,24 @@ body {
 }
 
 .ruler {
-    height: 2px;
+    height: 1px;
     width: 75%;
     display: block;
     margin: 0px auto;
-    background-color: #DDD;
+    background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255, 0.5) 25%,rgba(255,255,255, 0.5) 75%,rgba(255,255,255,0) 100%);
 }
 
 #author {
-    font-family: MonaLisa;
-    font-size: 21px;
+    font-family: "Trebuchet MS", helvetica, sans-serif;;
+    font-size: 10px;
     text-align: center;
-    margin: 25px auto;
+    margin: 13px auto;
     color: #AAA;
 }
 
 #footer {
-    font-family: MonaLisa;
-    font-size: 24px;
+    font-family: "Trebuchet MS", helvetica, sans-serif;;
+    font-size: 15px;
     color: rgb(221,221,221);
     margin: 10px auto;
     text-align: center;
@@ -242,8 +241,8 @@ body {
 
 .paginator {
     color: white;
-    font-family: MonaLisa;
-    font-size: 24px;
+    font-family: "Trebuchet MS", helvetica, sans-serif;;
+    font-size: 14px;
     display: inline-block;
     margin: 0px 5px 20px 5px;
 }
