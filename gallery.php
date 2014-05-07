@@ -1,14 +1,19 @@
-<?php 
+<?php
+    require_once 'S3.php';
+    $s3base = '//s3.amazonaws.com/emily_capo_portfolio/images';
+    
 	function getImageCount($category) {
-		$count = 0; 
-    if ($handle = @opendir(__DIR__ . "/static/images/originals/$category")) {
-        while (($file = readdir($handle)) !== false){
-            if (!in_array($file, array('.', '..', '.DS_Store'))) {
-	            $count++;
-						}
+	    $publicKey = getenv('S3_PUBLIC_KEY');
+	    $privateKey = getenv('S3_PRIVATE_KEY');
+	    if (!$publicKey || !$privateKey) {
+	        $credentials = parse_ini_file('s3.ini');
+	        $publicKey = $credentials['publicKey'];
+	        $privateKey = $credentials['privateKey'];
         }
-    }
-		return $count;
+	    $credentials = parse_ini_file('s3.ini');
+	    $s3 = new S3($publicKey, $privateKey);
+		$images = $s3->getBucket("emily_capo_portfolio", "images/originals/$category/");
+		return count($images) - 1;
 	}
 
 	function addCellAtIndex($cell, $i, &$leftColumn, &$rightColumn) {
@@ -20,24 +25,25 @@
 	}
 	
 	function getHtml($category, $page, $imageCount, $imagesPerPage, $firstIndex, $lastIndex) {
+	    global $s3base;
 		$galleryHtml = "<div id='gallery'>";
 		$leftColumn = "<div class='left column'>";
 		$rightColumn = "<div class='right column'>";
 		for ($i = $firstIndex; $i <= $lastIndex; $i++) {
-			addCellAtIndex("<div class='cell'><img src='static/images/thumbnails/$category/$i.jpg' /></div>", $i, $leftColumn, $rightColumn);
+			addCellAtIndex("<div class='cell'><img src='$s3base/thumbnails/$category/$i.jpg' /></div>", $i, $leftColumn, $rightColumn);
 		}
 		if ($i % 2 == 1) {
 			addCellAtIndex("<div class='cell'></div>", $i, $leftColumn, $rightColumn);
 		}
 		$leftColumn .= "</div>";
 		$rightColumn .= "</div>";
-		$viewport = "<div class='viewport'><img src='static/images/originals/$category/$firstIndex.jpg' /></div>";
+		$viewport = "<div class='viewport'><img src='$s3base/originals/$category/$firstIndex.jpg' /></div>";
 		$galleryHtml .= $leftColumn . $viewport . $rightColumn . "</div>";
 		
 		$pagination = "";
 		if ($imageCount > $imagesPerPage) {
-			$previous = "<div class='previous paginator disabled'>< Previous</div>";
-			$next = "<div class='next paginator disabled'>Next ></div>";
+			$previous = "<div class='previous paginator disabled'>< Prev Page</div>";
+			$next = "<div class='next paginator disabled'>Next Page ></div>";
 			if ($page > 0) {
 				$prevPage = $page - 1;
 				$previous = str_replace("disabled", "", "<a href='gallery.php?category=$category&page=$prevPage'>" . $previous . "</a>");
@@ -46,7 +52,7 @@
 				$nextPage = $page + 1;
 				$next = str_replace("disabled", "", "<a href='gallery.php?category=$category&page=$nextPage'>" . $next . "</a>");
 			}
-			$pagination = "<div class='pagination'>" . $previous . $next . "</div>";
+			$pagination = "<div class='pagination'>" . $previous . "<span class='paginator disabled'>|</span>" . $next . "</div>";
 		}
 		
 		return $galleryHtml . $pagination;
@@ -56,7 +62,7 @@
 	$categories = array('portraits', 'travel', 'nature', 'happenstances');
 	if (isset($_GET['category']) && in_array($_GET['category'], $categories)) {
 		$selectedTabName = $_GET['category'];
-		$banner="static/images/banners/$selectedTabName.jpg";
+		$banner="banners/$selectedTabName.jpg";
 		
 		$page = (isset($_GET['page']) && is_numeric($_GET['page'])) ? intval($_GET['page']) : 0;
 		$imageCount = getImageCount($selectedTabName);
@@ -79,14 +85,14 @@
 		<div id="content">
 			<?php include('header.php'); ?>
 			
-			<?= $galleryHtml ?>
+			<?php echo $galleryHtml; ?>
 			
 		</div>
 		
 		<script type='text/javascript'>
 			(function() {
 				
-				var spinner = $("<img />").attr("src", "static/images/spinner.gif");
+				var spinner = $("<img />").attr("src", "<?php echo $s3base; ?>/spinner.gif");
 				
 				$(".cell img").on("click", function(e) {
 					var thumbnail = $(e.target);
@@ -100,7 +106,7 @@
 							spinner.remove();
 							thumbnail.show();
 						});
-						image.attr("src", "static/images/originals/<?= $selectedTabName ?>/" + filename);
+						image.attr("src", "<?php echo $s3base; ?>/originals/<?php echo $selectedTabName; ?>/" + filename);
 					}
 				});
 			})();

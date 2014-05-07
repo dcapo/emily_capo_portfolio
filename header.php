@@ -50,12 +50,12 @@
 		$tabs[$selectedTabName]->setIsSelected(true);
 	}
 	if (empty($banner)) {
-		$banner = 'static/images/banners/contact.jpg';
+		$banner = 'banners/contact.jpg';
 	}
 ?>
 
 <div id="header">
-	<a style="display:block;" href="index.php"><img class="banner" src="<?= $banner ?>" border="1" /></a>
+	<a style="display:block;" href="index.php"><img class="banner" src="<?php echo "$s3base/$banner"; ?>" border="1" /></a>
 	<div class="navigation">
 			<?php
 				foreach ($tabs as $tab) {

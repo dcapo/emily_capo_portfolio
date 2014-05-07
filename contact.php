@@ -1,6 +1,7 @@
 <?php
 	$selectedTabName = 'contact';
-	$banner='static/images/banners/contact.jpg';
+	$banner='banners/contact.jpg';
+	$s3base = '//s3.amazonaws.com/emily_capo_portfolio/images';
 ?>
 <html>
 	<?php include('head.php'); ?>

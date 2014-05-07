@@ -1,6 +1,7 @@
 <?php
 	$selectedTabName = 'home';
-	$banner='static/images/banners/home.jpg';
+	$banner='banners/home.jpg';
+	$s3base = '//s3.amazonaws.com/emily_capo_portfolio/images';
 ?>
 
 <html>
@@ -13,10 +14,10 @@
 				<div class='home info-box'>
 					Click the tabs above to view galleries or mouse over for samples.
 				</div>
-				<img class="portraits sample" src="static/images/samples/portraits.jpg" />
-				<img class="travel sample" src="static/images/samples/travel.jpg" />
-				<img class="nature sample" src="static/images/samples/nature.jpg" />
-				<img class="happenstances sample" src="static/images/samples/happenstances.jpg" />
+				<img class="portraits sample" src="<?php echo $s3base; ?>/samples/portraits.jpg" />
+				<img class="travel sample" src="<?php echo $s3base; ?>/samples/travel.jpg" />
+				<img class="nature sample" src="<?php echo $s3base; ?>/samples/nature.jpg" />
+				<img class="happenstances sample" src="<?php echo $s3base; ?>/samples/happenstances.jpg" />
 			</div>
 		
 			<?php include('footer.php'); ?>
