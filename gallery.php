@@ -37,7 +37,10 @@
 		}
 		$leftColumn .= "</div>";
 		$rightColumn .= "</div>";
-		$viewport = "<div class='viewport'><img src='$s3base/originals/$category/$firstIndex.jpg' /></div>";
+		$viewport = "<div id='viewport'>".
+	                    "<img src='$s3base/originals/$category/$firstIndex.jpg' />".
+                        // "<img class='spinner' src='$s3base/spinner.gif' />".
+		            "</div>";
 		$galleryHtml .= $leftColumn . $viewport . $rightColumn . "</div>";
 		
 		$pagination = "";
@@ -82,6 +85,7 @@
 	<body>
 		
 		<?php include('head.php'); ?>
+		<script type="text/javascript" src='static/spin.min.js'></script>
 		<div id="content">
 			<?php include('header.php'); ?>
 			
@@ -91,21 +95,58 @@
 		
 		<script type='text/javascript'>
 			(function() {
-				
-				var spinner = $("<img />").attr("src", "<?php echo $s3base; ?>/spinner.gif");
-				
+			    var viewport = document.getElementById('viewport');
+			    var spinner = new Spinner({
+                    lines: 11,
+                    length: 6,
+                    width: 4,
+                    radius: 10,
+                    corners: 1,
+                    rotate: 0,
+                    direction: 1,
+                    color: '#FFF',
+                    speed: 1,
+                    trail: 60,
+                    shadow: false,
+                    hwaccel: false,
+                    className: 'spinner',
+                    zIndex: 2e9,
+                    top: '50%',
+                    left: '50%'
+                });
+			    
+			    var imageCount = $('.cell img').length;
+			    var imagesPerPage = <?php echo $imagesPerPage; ?>
+			    
+			    // register center image click behavior
+			    $("#viewport img").on("load", function(e) {
+			        $(this).off('click');
+			        spinner.stop();
+			        
+		            var src = $(this).attr("src");
+			        var filename = src.replace(/^.*[\\\/]/, '');
+			        var baseUrl = src.slice(0, src.indexOf(filename));
+
+				    var imageIndex = parseInt(filename.substr(0, filename.indexOf('.')));
+					if ((imageIndex % imagesPerPage) < (imageCount - 1)) {
+					    $(this).on("click", function() {
+					        spinner.spin(viewport);
+					        $(this).attr("src", baseUrl + (imageIndex + 1) + filename.slice(filename.indexOf('.')));
+				        });
+				    } else if (!$('.next.paginator').hasClass('disabled')) {
+				        $(this).on("click", function() {
+				            $('.next.paginator').trigger('click');
+			            });
+			        }
+		        });
+
+                // register thumbnail image click behavior
 				$(".cell img").on("click", function(e) {
-					var thumbnail = $(e.target);
+				    var thumbnail = $(e.target);
 					var filename = thumbnail.attr('src').replace(/^.*[\\\/]/, '');
-					var image = $(".viewport img");
-					
+					var image = $("#viewport img");
 					if (image.attr("src").replace(/^.*[\\\/]/, '') !== filename) {
-						thumbnail.parent().append(spinner);
-						thumbnail.hide();
-						image.on("load", function() {
-							spinner.remove();
-							thumbnail.show();
-						});
+					    spinner.spin(viewport);
 						image.attr("src", "<?php echo $s3base; ?>/originals/<?php echo $selectedTabName; ?>/" + filename);
 					}
 				});

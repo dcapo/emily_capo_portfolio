@@ -175,7 +175,7 @@ body {
     vertical-align: top;
 }
 
-.viewport {
+#viewport {
     display: inline-block;
     width: 640px;
     height: 100%;
@@ -183,7 +183,7 @@ body {
     position: relative;
 }
 
-.viewport:before {
+#viewport:before {
   content: '';
   display: inline-block;
   height: 100%; 
@@ -192,12 +192,16 @@ body {
   font-size: 0;
  }
 
-.viewport img {
+#viewport img {
     display: inline-block;
     max-width: 95%;
     max-height: 95%;
     vertical-align: middle;
-    position: relative;
+/*    position: relative;*/
+}
+
+.ib {
+    display: inline-block;
 }
 
 .cell {
@@ -223,7 +227,8 @@ body {
     display: inline-block;
     max-width: 100%;
     max-height: 100%;
-    vertical-align: middle
+    vertical-align: middle;
+    cursor: hand;
 }
 
 .left .cell {
