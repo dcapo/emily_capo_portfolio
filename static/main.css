@@ -2,6 +2,10 @@ body {
     background-color: rgb(27,27,27);
 }
 
+img {
+    transition: opacity 1s ease-in-out;
+}
+
 #content {
     width: 1000px;
     margin: 0px auto;
@@ -9,18 +13,22 @@ body {
 
 #header {
     border: 2px solid #818181;
-    background-color: white;
     border-radius: 5px;
     position: relative;
 }
 
 .banner {
     width: 994px;
+    height: 107px;
     border: 1px solid #818181;
 }
 
+.home-header .banner {
+    height: 260px;
+}
+
 .tab {
-    background-color: ;
+    background-color: white;
     font-family: "Trebuchet MS", helvetica, sans-serif;
     font-size: 15px;
     font-weight: lighter;

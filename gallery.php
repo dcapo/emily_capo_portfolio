@@ -7,10 +7,10 @@
 	    $privateKey = getenv('S3_PRIVATE_KEY');
 	    if (!$publicKey || !$privateKey) {
 	        $credentials = parse_ini_file('s3.ini');
-	        $publicKey = $credentials['publicKey'];
-	        $privateKey = $credentials['privateKey'];
+	        $publicKey = $credentials['S3_PUBLIC_KEY'];
+	        $privateKey = $credentials['S3_PRIVATE_KEY'];
         }
-	    $credentials = parse_ini_file('s3.ini');
+        
 	    $s3 = new S3($publicKey, $privateKey);
 		$images = $s3->getBucket("emily_capo_portfolio", "images/originals/$category/");
 		return count($images) - 1;
@@ -117,9 +117,8 @@
 			    
 			    var imageCount = $('.cell img').length;
 			    var imagesPerPage = <?php echo $imagesPerPage; ?>
-			    
-			    // register center image click behavior
-			    $("#viewport img").on("load", function(e) {
+
+			    var registerClickToNextImage = function (e) {
 			        $(this).off('click');
 			        spinner.stop();
 			        
@@ -138,7 +137,10 @@
 				            $('.next.paginator').trigger('click');
 			            });
 			        }
-		        });
+			    };
+			    
+			    $("#viewport img").each(registerClickToNextImage);
+			    $("#viewport img").on("load", registerClickToNextImage);
 
                 // register thumbnail image click behavior
 				$(".cell img").on("click", function(e) {

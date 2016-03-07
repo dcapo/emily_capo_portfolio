@@ -8,7 +8,9 @@
 	<?php include('head.php'); ?>
 	<body>
 		<div id="content">
-			<?php include('header.php'); ?>
+			<div class="home-header">
+				<?php include('header.php'); ?>
+			</div>
 		
 			<div class="sample-container">
 				<div class='home info-box'>
