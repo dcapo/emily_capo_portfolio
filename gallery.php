@@ -1,6 +1,11 @@
 <?php
     require_once 'S3.php';
+    require __DIR__ . '/vendor/autoload.php';
+
     $s3base = '//s3.amazonaws.com/emily_capo_portfolio/images';
+
+    $dotenv = new Dotenv\Dotenv(__DIR__);
+    $dotenv->load();
     
 	function getImageCount($category) {
 	    $publicKey = getenv('S3_PUBLIC_KEY');
